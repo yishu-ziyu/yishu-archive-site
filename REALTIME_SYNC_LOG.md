@@ -182,6 +182,7 @@
 - Notes:
   - Frontend now avoids browser-side direct requests to `*.supabase.co`.
   - Vercel still requires Supabase env vars to execute serverless proxy routes.
+  - Changes committed and pushed to `main` with commit `7815836`.
 
 ## Next Entry Template
 ```md
