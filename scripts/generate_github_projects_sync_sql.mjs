@@ -1,0 +1,192 @@
+#!/usr/bin/env node
+
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
+const OWNER = 'yishu-ziyu';
+const REPOS = [
+    'f5-tts-voice-chat-v2',
+    'logic-arena',
+    'Aegis-Manim',
+    'Recall-Sticker',
+    'mirror-self-monitor',
+    'yishu-svg',
+    'questspace-2.0',
+    'learn-your-way',
+    'newsnow-yi',
+];
+
+const OUTPUT_PATH = path.resolve(process.cwd(), 'supabase/sync_github_projects.sql');
+
+const headers = {
+    Accept: 'application/vnd.github+json',
+    'User-Agent': 'yishu-archive-github-sync',
+};
+
+function quote(value) {
+    if (value == null) {
+        return 'NULL';
+    }
+    const escaped = String(value).replace(/'/g, "''");
+    return `'${escaped}'`;
+}
+
+function toTitle(repoName) {
+    const map = {
+        'f5-tts-voice-chat-v2': 'F5 TTS Voice Chat v2',
+        'logic-arena': 'Logic Arena',
+        'Aegis-Manim': 'Aegis Manim',
+        'Recall-Sticker': 'Recall Sticker',
+        'mirror-self-monitor': 'Mirror Self Monitor',
+        'yishu-svg': 'YiShu SVG',
+        'questspace-2.0': 'QuestSpace 2.0',
+        'learn-your-way': 'Learn Your Way',
+        'newsnow-yi': 'NewsNow Yi',
+    };
+    return map[repoName] ?? repoName;
+}
+
+function toDescription(repoName, repoDescription) {
+    if (repoDescription && repoDescription.trim()) {
+        return repoDescription.trim();
+    }
+    return `${toTitle(repoName)} 正在持续开发中，详细进展请查看 GitHub 仓库。`;
+}
+
+function normalizeTechStack(language, topics) {
+    const list = [];
+    if (language) {
+        list.push(language);
+    }
+    if (Array.isArray(topics)) {
+        for (const topic of topics.slice(0, 4)) {
+            if (topic && !list.includes(topic)) {
+                list.push(topic);
+            }
+        }
+    }
+    if (!list.includes('GitHub')) {
+        list.push('GitHub');
+    }
+    return list;
+}
+
+function toMarkdownContent(repo) {
+    const updatedDate = new Date(repo.updated_at).toISOString().slice(0, 10);
+    return [
+        `# ${repo.full_name}`,
+        '',
+        toDescription(repo.name, repo.description),
+        '',
+        '## Snapshot',
+        `- Repository: ${repo.html_url}`,
+        `- Last Updated (UTC): ${updatedDate}`,
+        `- Language: ${repo.language || 'N/A'}`,
+        `- Stars: ${repo.stargazers_count}`,
+        `- Forks: ${repo.forks_count}`,
+        '',
+        '## Notes',
+        '- This project card is synced from GitHub metadata.',
+        '- You can further edit the description and details in the admin panel.',
+    ].join('\n');
+}
+
+function buildUpsertSQL(project) {
+    const arraySQL = `ARRAY[${project.techStack.map((item) => quote(item)).join(', ')}]::text[]`;
+    return `
+with incoming as (
+    select
+        ${quote(project.title)}::text as title,
+        ${quote(project.description)}::text as description,
+        ${quote(project.repoUrl)}::text as repo_url,
+        ${arraySQL} as tech_stack,
+        ${quote(project.imageUrl)}::text as image_url,
+        ${quote(project.year)}::text as year,
+        ${project.stars}::integer as stars,
+        ${quote(project.content)}::text as content,
+        'published'::text as status
+),
+updated as (
+    update public.projects p
+    set
+        title = i.title,
+        description = i.description,
+        tech_stack = i.tech_stack,
+        image_url = i.image_url,
+        year = i.year,
+        stars = i.stars,
+        content = i.content,
+        status = i.status,
+        updated_at = timezone('utc', now())
+    from incoming i
+    where p.repo_url = i.repo_url
+    returning p.id
+)
+insert into public.projects (
+    title,
+    description,
+    repo_url,
+    tech_stack,
+    image_url,
+    year,
+    stars,
+    content,
+    status
+)
+select
+    i.title,
+    i.description,
+    i.repo_url,
+    i.tech_stack,
+    i.image_url,
+    i.year,
+    i.stars,
+    i.content,
+    i.status
+from incoming i
+where not exists (select 1 from updated);
+`.trim();
+}
+
+async function fetchRepo(repoName) {
+    const response = await fetch(`https://api.github.com/repos/${OWNER}/${repoName}`, { headers });
+    if (!response.ok) {
+        throw new Error(`GitHub API failed for ${repoName}: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+}
+
+async function main() {
+    const repos = [];
+    for (const repoName of REPOS) {
+        const data = await fetchRepo(repoName);
+        const project = {
+            title: toTitle(data.name),
+            description: toDescription(data.name, data.description),
+            repoUrl: data.html_url,
+            techStack: normalizeTechStack(data.language, data.topics),
+            imageUrl: `https://opengraph.githubassets.com/1/${OWNER}/${data.name}`,
+            year: new Date(data.pushed_at || data.updated_at || Date.now()).getUTCFullYear().toString(),
+            stars: Number.isFinite(data.stargazers_count) ? data.stargazers_count : 0,
+            content: toMarkdownContent(data),
+        };
+        repos.push(project);
+    }
+
+    const sqlParts = [
+        '-- Auto-generated by scripts/generate_github_projects_sync_sql.mjs',
+        '-- Sync selected GitHub repositories into public.projects',
+        'begin;',
+        ...repos.map(buildUpsertSQL),
+        'commit;',
+    ];
+
+    await fs.writeFile(OUTPUT_PATH, `${sqlParts.join('\n\n')}\n`, 'utf8');
+    console.log(`Generated ${OUTPUT_PATH}`);
+}
+
+main().catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+});
+

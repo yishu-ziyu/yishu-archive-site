@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="780" y2="1120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B132B"/>
+      <stop offset="0.45" stop-color="#1C3F95"/>
+      <stop offset="1" stop-color="#48A9E6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(710 270) rotate(127) scale(530)">
+      <stop stop-color="#9BE7FF" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#9BE7FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="900" height="1200" rx="56" fill="url(#bg)"/>
+  <circle cx="710" cy="270" r="390" fill="url(#glow)"/>
+
+  <path d="M106 920C210 780 338 760 452 810C553 854 648 845 784 724" stroke="white" stroke-opacity="0.25" stroke-width="4"/>
+  <path d="M108 980C240 850 358 836 462 872C567 907 684 886 810 772" stroke="white" stroke-opacity="0.2" stroke-width="3"/>
+
+  <rect x="120" y="116" width="660" height="46" rx="23" fill="white" fill-opacity="0.18"/>
+  <text x="156" y="147" fill="white" fill-opacity="0.92" font-size="26" font-family="'Avenir Next', 'PingFang SC', sans-serif" letter-spacing="2">RESEARCH REPORT</text>
+
+  <text x="118" y="706" fill="white" font-size="95" font-family="'Avenir Next', 'PingFang SC', sans-serif" font-weight="700">AIGC</text>
+  <text x="120" y="762" fill="white" fill-opacity="0.88" font-size="34" font-family="'Avenir Next', 'PingFang SC', sans-serif" letter-spacing="1.2">ADOPTION STUDY</text>
+
+  <rect x="120" y="810" width="660" height="2" fill="white" fill-opacity="0.4"/>
+  <text x="120" y="868" fill="white" fill-opacity="0.9" font-size="28" font-family="'Avenir Next', 'PingFang SC', sans-serif">Psychology</text>
+  <text x="690" y="868" fill="white" fill-opacity="0.9" font-size="28" text-anchor="end" font-family="'Avenir Next', 'PingFang SC', sans-serif">2025</text>
+</svg>
+

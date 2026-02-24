@@ -1,0 +1,108 @@
+:root {
+    --surface-page: #eef2f7;
+    --surface-sidebar: #f8fafd;
+    --surface-card: #ffffff;
+    --border-subtle: #dde5ef;
+    --text-primary: #18212f;
+    --text-secondary: #5d6b7d;
+    --accent-primary: #2f6ea3;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at 14% 8%, rgba(47, 110, 163, 0.1), transparent 28%),
+        radial-gradient(circle at 94% -6%, rgba(111, 146, 185, 0.11), transparent 36%),
+        var(--surface-page);
+    color: var(--text-primary);
+    font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+}
+
+::selection {
+    background: var(--accent-primary);
+    color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bcc8d8;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8a9bb1;
+}
+
+.neo-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+.neo-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-subtle);
+    border-radius: 0;
+    padding: 0.65rem 0;
+    outline: none;
+    transition: border-color 0.2s ease;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.neo-input:focus {
+    border-color: var(--accent-primary);
+}
+
+.neo-card {
+    border: 1px solid var(--border-subtle);
+    background: var(--surface-card);
+    border-radius: 24px;
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.05);
+}
+
+.animate-rise {
+    animation: riseIn 0.5s ease both;
+}
+
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.react-pdf__Page__canvas {
+    margin: 0 auto;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.react-pdf__Page__textContent {
+    display: none !important;
+}
+
+.react-pdf__Page__annotations {
+    display: none !important;
+}

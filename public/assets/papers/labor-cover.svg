@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="90" y1="70" x2="830" y2="1120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F2EA"/>
+      <stop offset="0.56" stop-color="#EADCC8"/>
+      <stop offset="1" stop-color="#D7C0A2"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="1200" rx="56" fill="url(#bg)"/>
+
+  <rect x="116" y="116" width="668" height="46" rx="23" fill="#A05A2C" fill-opacity="0.14"/>
+  <text x="154" y="147" fill="#7C431A" font-size="26" font-family="'Avenir Next', 'PingFang SC', sans-serif" letter-spacing="2">ACADEMIC PAPER</text>
+
+  <rect x="118" y="812" width="664" height="258" rx="24" fill="white" fill-opacity="0.58"/>
+
+  <text x="120" y="696" fill="#3E2C21" font-size="88" font-family="'Avenir Next', 'PingFang SC', sans-serif" font-weight="700">LABOR</text>
+  <text x="120" y="756" fill="#5A4331" font-size="34" font-family="'Avenir Next', 'PingFang SC', sans-serif" letter-spacing="1.2">EDUCATION &amp; WORK HOURS</text>
+
+  <rect x="160" y="378" width="110" height="300" rx="20" fill="#B8713D"/>
+  <rect x="300" y="316" width="110" height="362" rx="20" fill="#A05A2C"/>
+  <rect x="440" y="434" width="110" height="244" rx="20" fill="#C48754"/>
+  <rect x="580" y="256" width="110" height="422" rx="20" fill="#8E4B22"/>
+  <line x1="140" y1="678" x2="740" y2="678" stroke="#7C431A" stroke-opacity="0.35" stroke-width="3"/>
+
+  <text x="120" y="876" fill="#5A4331" font-size="28" font-family="'Avenir Next', 'PingFang SC', sans-serif">Economics</text>
+  <text x="690" y="876" fill="#5A4331" font-size="28" text-anchor="end" font-family="'Avenir Next', 'PingFang SC', sans-serif">2024</text>
+</svg>
+
