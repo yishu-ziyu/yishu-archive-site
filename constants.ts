@@ -1,48 +1,14 @@
 import { Article, Project, Paper } from './types';
 
+// ⚠️ 此文件由 scripts/prebuild.mjs 自动生成
+// 生成时间: 2026-02-24T11:29:34.591Z
+// 数据来源: Supabase (published only)
+
 export const INITIAL_ARTICLES: Article[] = [
     {
-        id: 'recall-sticker',
-        title: 'Recall Sticker 📝',
-        excerpt: '"高亮即挖空" —— 一个低摩擦的网页记忆工具。Turning your reading into active recall, in-situ.',
-        tags: ['Chrome Extension', 'Memory', 'Anki', 'Learning', 'Product'],
-        content: `# Recall Sticker 📝
-
-"高亮即挖空" —— 一个低摩擦的网页记忆工具。 Turning your reading into active recall, in-situ.
-
-利用"场景记忆"，在文字所在的上下文中强化记忆。选中即生成遮挡贴纸，支持间隔重复（Spaced Repetition）和 Anki 导出。
-
-## ✨ 核心功能 (Features)
-
-*   **极简交互**: \`选中\` 即生成贴纸，\`点击\` 即可揭示/隐藏。
-*   **键盘流**: \`Tab\` 键快速切换贴纸，\`Space\` 键揭示。
-*   **Anki 联动**: 支持一键导出为 Anki 卡片，自动抓取上下文句子。
-
-## 🚀 快速开始
-
-1.  **加载扩展**:
-    *   打开 \`chrome://extensions\` -> 开启 "开发者模式"
-    *   点击 "加载已解压的扩展程序" -> 选择本文件夹
-2.  **创建贴纸**:
-    *   在网页上选中一段文字（需在同一段落内）。
-    *   点击浮现的 🖍️ 图标，或使用快捷键。
-3.  **复习**:
-    *   点击贴纸查看答案。
-    *   右键贴纸删除。
-
-## 🛠️ 技术亮点 (Technical Implementation)
-
-*   **精准定位算法**: 解决了页面存在重复单词时的定位问题。通过 Prefix + Suffix 双重校验，确保贴纸永远“贴”在正确的位置。
-*   **零干扰 UI**: 只有在有效选择时才会出现悬浮按钮。异常操作（如跨节点选择）会有温和的 Toast 提示。
-*   **隐私优先**: 所有数据存储在本地 \`chrome.storage.local\`，不上传任何服务器。`,
-        status: 'draft',
-        createdAt: Date.now()
-    },
-    {
-        id: 'last-journey',
-        title: '最后的旅途',
-        excerpt: '一九一二年，斯科特抵达南极点时发现挪威人捷足先登。这不仅是关于探险的悲剧，更是关于尊严、牺牲与人类意志的最后注脚。',
-        tags: ['非虚构', '历史', '南极探险', '斯科特', '人类意志'],
+        id: "0b3be265-d583-4d4f-990c-1961749f18ba",
+        title: "最后的旅途",
+        excerpt: "一九一二年，斯科特抵达南极点时发现挪威人捷足先登。这不仅是关于探险的悲剧，更是关于尊严、牺牲与人类意志的最后注脚。",
         content: `南极大陆没有风景。目之所及，除了白色，还是白色。
 
 一九一二年一月十六日，罗伯特·斯科特和他的四名同伴，已经在这片白色的荒原上拖着雪橇行走了两个半月。这不仅仅是距离的征服，更是一场关于尊严的赌局。就在两年前，这支英国探险队还在为并没有多少胜算的资金发愁，而此刻，他们距离那个从未有人踏足的终点——南极极点，只剩下最后的几步之遥。
@@ -78,14 +44,15 @@ export const INITIAL_ARTICLES: Article[] = [
 日记本在斯科特的手边。结尾的字迹潦草而决绝，那是他留给世界的最后印象：
 
 “我已经再也写不动了。”`,
-        status: 'published',
-        createdAt: Date.now()
+        tags: ["非虚构", "历史", "南极探险", "斯科特", "人类意志"],
+        status: "published",
+        createdAt: 1771901930063,
+        updatedAt: 1771902044346,
     },
     {
-        id: 'prussian-blue',
-        title: '普鲁士蓝',
-        excerpt: '奥斯维辛墙上的蓝色印记，牵出一段关于化学家弗里茨·哈伯的残酷历史。他是从空气中提取面包的天才，也是释放恶魔的始作俑者。',
-        tags: ['历史', '科学伦理', '普鲁士蓝', '弗里茨·哈伯', '随笔'],
+        id: "6bde8b4b-a95f-4f9f-b23e-8812a00316b7",
+        title: "普鲁士蓝",
+        excerpt: "奥斯维辛墙上的蓝色印记，牵出一段关于化学家弗里茨·哈伯的残酷历史。他是从空气中提取面包的天才，也是释放恶魔的始作俑者。",
         content: `奥斯维辛的砖墙上，至今仍有一层抹不去的蓝色。 这并非某种涂鸦，也非岁月的霉斑，而是氰化物残留留下的化学印记。这是一种名为“普鲁士蓝”的色调，美丽、深邃，却像一道永恒的伤疤，刻在了二十世纪最黑暗的遗址上。
 
 故事的起点也是一场误会。一七八二年，一位试图制造鲜红洋红的颜料商，误打误撞地在实验中得到了一种耀眼的蓝。他以为自己复刻了古埃及神庙里神圣的天空原色，却未曾想到，这种颜色的化学结构里，锁住了一个名为“氰”的恶魔。而两个世纪后，它被释放出来。
@@ -107,16 +74,15 @@ export const INITIAL_ARTICLES: Article[] = [
 哈伯死于一九三四年，死在逃亡的路上，手里攥着一瓶治疗心脏病的硝化甘油。 他留下了一封信。在信中，他没有忏悔那些因毒气而死的士兵，也没有提到被他间接害死的亲人。他的恐惧来自另一个维度： 他担心，因为他发明了氮肥，人类打破了自然的平衡。一旦人类数量减少，由于过剩的养分，植物将会疯狂生长。
 
 在哈伯最后的幻象里，世界不再属于人类。那些受过滋养的植物将蔓延开来，将整个地球填满，把所有的生命形式都淹死在一片可怕的、无声的绿色里。`,
-        status: 'published',
-        createdAt: 1727769600000
+        tags: ["历史", "科学伦理", "普鲁士蓝", "弗里茨·哈伯", "随笔"],
+        status: "published",
+        createdAt: 1727769600000,
+        updatedAt: 1771902044346,
     },
     {
-        id: 'aigc',
-        title: '焦虑的采纳者：AIGC技术接受中自我控制与比较焦虑的竞争性作用',
-        excerpt: '在生成式人工智能日益普及的背景下，探究大学生采纳AIGC学习工具的内在心理机制。研究构建了一个有调节的中介模型，发现自我控制是关键驱动力，而比较焦虑会阻断感知有用性向采纳意愿的转化。',
-        // 配置为本地 public 目录下的文件路径
-        pdfUrl: '/pdfs/aigc.pdf', 
-        tags: ['心理学', 'AIGC', '自我控制', '比较焦虑', 'TAM模型', '中介效应'],
+        id: "21efa7c4-5c5f-4d7e-bd77-b7a092fee720",
+        title: "焦虑的采纳者：AIGC技术接受中自我控制与比较焦虑的竞争性作用",
+        excerpt: "在生成式人工智能日益普及的背景下，探究大学生采纳AIGC学习工具的内在心理机制。研究构建了一个有调节的中介模型，发现自我控制是关键驱动力，而比较焦虑会阻断感知有用性向采纳意愿的转化。",
         content: `【摘要】
 在生成式人工智能（AIGC）日益普及的教育背景下，本研究旨在探究大学生采纳 AIGC 学习工具的内在心理机制，重点考察自我控制、感知有用性与比较焦虑的复杂交互作用。研究基于技术接受模型（TAM）与相关心理学理论，构建了一个有调节的中介模型，并通过对 204 名中国高校学生的问卷调查数据，采用 SPSS PROCESS 宏程序进行实证检验。
 
@@ -175,16 +141,16 @@ H4：比较焦虑调节了感知有用性在自我控制和使用意图之间的
 本研究的发现不仅具有理论价值，也为 AIGC 技术在教育领域的健康发展与有效应用提供了深刻的实践启示。
 首先，对于 AIGC 产品开发者而言，本研究的结果提示，提升用户采纳意愿不应仅仅聚焦于增强工具的功能与效用。开发者需要更深入地洞察用户的心理体验，特别是负面情绪的“一票否决权”。
 其次，对于教育工作者而言，本研究揭示了在推广和使用 AIGC 工具时进行差异化指导的必要性。教师不应假设所有学生都能以同样的方式从 AIGC 中受益。`,
-        status: 'published',
-        createdAt: 1720051200000
+        pdfUrl: "/pdfs/aigc.pdf",
+        tags: ["心理学", "AIGC", "自我控制", "比较焦虑", "TAM模型", "中介效应"],
+        status: "published",
+        createdAt: 1720051200000,
+        updatedAt: 1771902044346,
     },
     {
-        id: 'labor',
-        title: '教育水平对工作时间的影响研究及其性别差异的异质性分析',
-        excerpt: '基于CLDS 2018数据，系统考察教育水平对工作时间的影响。研究揭示了显著的性别异质性：教育显著减少了女性的工作时间，但对男性影响不显著，并探讨了家务劳动和行业特征在其中的作用。',
-        // 配置为本地 public 目录下的文件路径
-        pdfUrl: '/pdfs/labor.pdf', 
-        tags: ['劳动经济学', '性别差异', 'CLDS', '教育回报', '分位数回归'],
+        id: "c5e6faaa-ca89-45ee-8339-deec02f498c1",
+        title: "教育水平对工作时间的影响研究及其性别差异的异质性分析",
+        excerpt: "基于CLDS 2018数据，系统考察教育水平对工作时间的影响。研究揭示了显著的性别异质性：教育显著减少了女性的工作时间，但对男性影响不显著，并探讨了家务劳动和行业特征在其中的作用。",
         content: `【摘要】
 本文基于中国劳动力动态调查(CLDS)2018 年数据，系统考察了教育水平对工作时间的影响及其性别差异。研究发现：第一，教育水平对工作时间的影响存在显著的性别差异，女性样本中呈显著负相关，而男性样本中关系不显著；第二，教育影响表现出非线性特征，从低分位点的不显著逐渐转变为中高分位点的显著负向影响；第三，教育效应在不同行业间存在显著差异，农业部门表现出最强的负向效应；第四，家务劳动时间作为重要影响因素，显示出显著的性别差异。基于研究发现，本文从教育体系完善、制度建设和行业政策等方面提出了相关政策建议。
 
@@ -244,16 +210,16 @@ H3：教育影响工作时间的效应存在行业异质性
 
 6.2 政策建议
 基于本研究的实证发现，为促进劳动力市场的有效配置和性别平等发展，应从教育体系完善、制度建设和行业政策等方面着手。考虑到显著的性别差异，制度建设应着力促进性别平等。完善的育儿托管服务体系可以有效减轻家庭照料负担，特别是女性承担的家务责任。`,
-        status: 'published',
-        createdAt: 1717200000000
+        pdfUrl: "/pdfs/labor.pdf",
+        tags: ["劳动经济学", "性别差异", "CLDS", "教育回报", "分位数回归"],
+        status: "published",
+        createdAt: 1717200000000,
+        updatedAt: 1771902044346,
     },
     {
-        id: 'regional',
-        title: '产业集聚、创新活动与区域经济增长：基于中国城市的实证研究',
-        excerpt: '探讨产业集聚如何通过创新活动影响区域经济增长。基于2015-2021年289个地级市数据，发现创新活动在产业集聚促进经济增长中发挥重要的中介作用，且存在显著的区域异质性。',
-        // 配置为本地 public 目录下的文件路径
-        pdfUrl: '/pdfs/regional.pdf', 
-        tags: ['区域经济', '产业集聚', '创新', '面板数据', '中介效应'],
+        id: "ee000e89-d936-4747-b04c-593bbd5dd8de",
+        title: "产业集聚、创新活动与区域经济增长：基于中国城市的实证研究",
+        excerpt: "探讨产业集聚如何通过创新活动影响区域经济增长。基于2015-2021年289个地级市数据，发现创新活动在产业集聚促进经济增长中发挥重要的中介作用，且存在显著的区域异质性。",
         content: `【摘要】
 本研究探讨了产业集聚、创新活动与区域经济增长之间的关系。在中国经济步入新常态背景下，产业集聚与创新驱动已成为推动区域经济高质量发展的核心动力。基于 2015-2021 年中国 289 个地级及以上城市的面板数据，本文构建了包含产业集聚、创新活动与经济增长的实证分析框架，采用固定效应模型、中介效应模型以及分位数回归等方法进行实证检验。
 
@@ -322,145 +288,298 @@ H4：政府科技支出占比在产业集聚影响创新活动的过程中起到
 首先，政府应积极推动产业集聚的同时，优化产业结构，避免过度的产业集聚所导致的资源错配。
 在中西部地区，政府应加大对创新活动的支持力度，通过政策引导促进产业转型升级。鼓励技术创新和高附加值产业的发展。
 此外，创新活动在经济增长中的作用是非线性的，政策应注重根据不同城市的创新水平调整相应的政策措施。`,
-        status: 'published',
-        createdAt: 1704067200000
+        pdfUrl: "/pdfs/regional.pdf",
+        tags: ["区域经济", "产业集聚", "创新", "面板数据", "中介效应"],
+        status: "published",
+        createdAt: 1704067200000,
+        updatedAt: 1771902044346,
     }
 ];
 
 export const INITIAL_PROJECTS: Project[] = [
     {
-        id: 'recall-sticker',
-        title: 'Recall Sticker',
-        description: '网页记忆工具：高亮即挖空，支持间隔重复与 Anki 导出。',
-        repoUrl: 'https://github.com/yishu-ziyu/Recall-Sticker',
-        techStack: ['Chrome Extension', 'JavaScript', 'Anki'],
-        imageUrl: '/assets/recall-sticker-cover.png',
-        year: '2025',
-        status: 'published',
-        content: `# Recall Sticker 📝 (v1.0.0 MVP)
+        id: "3a62a6cd-d17e-4d58-b3ce-2a782b11483e",
+        title: "F5 TTS Voice Chat v2",
+        description: "F5-TTS Voice Chat with Whisper STT and Ollama LLM",
+        repoUrl: "https://github.com/yishu-ziyu/f5-tts-voice-chat-v2",
+        techStack: ["Python", "GitHub"],
+        imageUrl: "https://opengraph.githubassets.com/1/yishu-ziyu/f5-tts-voice-chat-v2",
+        year: "2026",
+        stars: 0,
+        content: `# yishu-ziyu/f5-tts-voice-chat-v2
 
-> **"高亮即挖空"** —— 一个低摩擦的网页记忆工具。
-> Turning your reading into active recall, in-situ.
+F5-TTS Voice Chat with Whisper STT and Ollama LLM
 
-利用"场景记忆"，在文字所在的上下文中强化记忆。选中即生成遮挡贴纸，支持间隔重复（Spaced Repetition）和 Anki 导出。
+## Snapshot
+- Repository: https://github.com/yishu-ziyu/f5-tts-voice-chat-v2
+- Last Updated (UTC): 2026-02-22
+- Language: Python
+- Stars: 0
+- Forks: 0
 
-## ✨ 核心功能 (Features)
-
-| 功能              | 描述                                                            | 状态 |
-| :---------------- | :-------------------------------------------------------------- | :--- |
-| 🖍️ **划词贴纸**   | 选中文字，一键生成模糊遮挡贴纸（支持 Duplicate Words 精准定位） | ✅   |
-| ⌨️ **键盘导航**   | \`Tab\` 键切换焦点，\`Space/Enter\` 键揭示/隐藏                     | ✅   |
-| 👁️ **偷看模式**   | 按住 \`Alt/Option\` 键，全局半透明显示所有答案                    | ✅   |
-| 🛡️ **智能容错**   | 自动检测跨段落选择错误，提供 Toast 提示                         | ✅   |
-| 📥 **Anki 导出**  | 智能截取完整句子上下文，自动生成 Cloze 填空卡片 CSV             | ✅   |
-| 🗂️ **侧边栏回顾** | Chrome Side Panel 集中展示所有贴纸，一键跳转原文位置            | ✅   |
-
-## 🛠️ 技术亮点 (Technical Implementation)
-
-- **精准定位算法**: 解决了页面存在重复单词时的定位问题。通过 \`Prefix\` + \`Suffix\` 双重校验，确保贴纸永远“贴”在正确的位置。
-- **零干扰 UI**: 只有在有效选择时才会出现悬浮按钮。异常操作（如跨节点选择）会有温和的 Toast 提示。
-- **隐私优先**: 所有数据存储在本地 \`chrome.storage.local\`，不上传任何服务器。`
+## Notes
+- This project card is synced from GitHub metadata.
+- You can further edit the description and details in the admin panel.`,
+        status: "published",
+        createdAt: 1771901559866,
+        updatedAt: 1771901559866,
     },
     {
-        id: 'yishu-svg',
-        title: 'YiShu SVG',
-        description: '智能教学动画生成器：用自然语言生成动态 SVG 动画。',
-        repoUrl: 'https://github.com/yishu-ziyu/yishu-svg',
-        techStack: ['HTML', 'DeepSeek-V3', 'Animation'],
-        imageUrl: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop',
-        year: '2025',
-        status: 'published',
-        content: `# 🎨 YiShu SVG - 智能教学动画生成器
+        id: "8adc6697-e29c-49a9-b9e4-0eaeeec39ee7",
+        title: "Logic Arena",
+        description: "Logic Arena 正在持续开发中，详细进展请查看 GitHub 仓库。",
+        repoUrl: "https://github.com/yishu-ziyu/logic-arena",
+        techStack: ["TypeScript", "GitHub"],
+        imageUrl: "https://opengraph.githubassets.com/1/yishu-ziyu/logic-arena",
+        year: "2026",
+        stars: 0,
+        content: `# yishu-ziyu/logic-arena
 
-一个利用大语言模型（DeepSeek-V3）将自然语言转化为动态 SVG 教学动画的工具。
+Logic Arena 正在持续开发中，详细进展请查看 GitHub 仓库。
 
-## 💡 项目初心
+## Snapshot
+- Repository: https://github.com/yishu-ziyu/logic-arena
+- Last Updated (UTC): 2026-02-21
+- Language: TypeScript
+- Stars: 0
+- Forks: 0
 
-作为教育者或知识分享者，我们常需要制作直观的示意图（如解释“边际效应”、“神经元传输”），但专业动画软件门槛太高。**YiShu SVG** 让你可以只需描述“想展示什么”，就能生成包含**分步演示、动态高亮、字幕解说**的矢量动画。
-
-## ✨ 功能特性
-
-- **🗣️ 自然语言驱动**: "画一个天平，左低右高，演示平衡的过程" -> 生成代码
-- **🎬 动态步进**: 点击“下一步”触发动画流，适合幻灯片式讲解
-- **🧩 智能组件**: 内置思维导图、流程图、几何图形等原语
-- **⚡ 即时渲染**: 纯前端渲染，支持导出为 HTML/SVG`
+## Notes
+- This project card is synced from GitHub metadata.
+- You can further edit the description and details in the admin panel.`,
+        status: "published",
+        createdAt: 1771901559866,
+        updatedAt: 1771901559866,
     },
     {
-        id: 'newsnow-yi',
-        title: 'NewsNow Pro',
-        description: '海外优质 AI 资讯与深度阅读聚合阅读器。',
-        repoUrl: 'https://github.com/yishu-ziyu/newsnow-yi',
-        techStack: ['TypeScript', 'RSS', 'Docker'],
-        imageUrl: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop',
-        year: '2026',
-        status: 'published',
-        content: `# NewsNow Pro - 优质信息聚合阅读器
+        id: "3e75597f-b190-497e-9d98-bba851b2e44c",
+        title: "Aegis Manim",
+        description: "Aegis Manim 正在持续开发中，详细进展请查看 GitHub 仓库。",
+        repoUrl: "https://github.com/yishu-ziyu/Aegis-Manim",
+        techStack: ["Python", "GitHub"],
+        imageUrl: "https://opengraph.githubassets.com/1/yishu-ziyu/Aegis-Manim",
+        year: "2026",
+        stars: 0,
+        content: `# yishu-ziyu/Aegis-Manim
 
-> 🚀 基于 [ourongxing/newsnow](https://github.com/ourongxing/newsnow) 的增强版本，专注于**海外优质 AI 资讯与深度阅读**
+Aegis Manim 正在持续开发中，详细进展请查看 GitHub 仓库。
 
-**_优雅地阅读实时资讯与热点新闻_**
+## Snapshot
+- Repository: https://github.com/yishu-ziyu/Aegis-Manim
+- Last Updated (UTC): 2026-02-21
+- Language: Python
+- Stars: 0
+- Forks: 0
 
-## ✨ 本项目的创新
-在原项目的基础上，我们做了以下增强：
-
-### 🌍 新增海外优质信息源
-- **AI 资讯**: TLDR, OpenAI Research, Reddit AI Monitor
-- **科技博客**: Stratechery, Lenny's Newsletter, Paul Graham Essays
-- **深度阅读**: Aeon, Psyche, Farnam Street
-
-### 🔧 技术改进
-- **Foreign Source Proxy**：通过 RSS-to-JSON 代理解决海外源访问问题
-- **信息分层架构**：新增 \`english\` 专栏，独立展示海外资讯
-- **模块化设计**：\`server/sources/foreign/\` 目录专门管理海外源`
+## Notes
+- This project card is synced from GitHub metadata.
+- You can further edit the description and details in the admin panel.`,
+        status: "published",
+        createdAt: 1771901559866,
+        updatedAt: 1771901559866,
     },
     {
-        id: 'aegis-manim',
-        title: 'Aegis Manim',
-        description: 'AI 驱动的 Manim 教学视频生成引擎。',
-        repoUrl: 'https://github.com/yishu-ziyu/Aegis-Manim',
-        techStack: ['Python', 'Manim', 'AI'],
-        imageUrl: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1000&auto=format&fit=crop',
-        year: '2026',
-        status: 'published',
-        content: `# Aegis Manim
-        
-### 让数学与经济学的推导过程“跃然纸上”
-一个面向未来的、AI 驱动的 Manim 教学视频生成引擎。它可以帮助你快速将数学公式、经济学图表和逻辑推导转化为高质量的动画视频。`
+        id: "99511b15-174c-4e7b-87a1-c5fee6c469c1",
+        title: "Recall Sticker",
+        description: "Recall Sticker 正在持续开发中，详细进展请查看 GitHub 仓库。",
+        repoUrl: "https://github.com/yishu-ziyu/Recall-Sticker",
+        techStack: ["JavaScript", "GitHub"],
+        imageUrl: "https://opengraph.githubassets.com/1/yishu-ziyu/Recall-Sticker",
+        year: "2026",
+        stars: 1,
+        content: `# yishu-ziyu/Recall-Sticker
+
+Recall Sticker 正在持续开发中，详细进展请查看 GitHub 仓库。
+
+## Snapshot
+- Repository: https://github.com/yishu-ziyu/Recall-Sticker
+- Last Updated (UTC): 2026-01-27
+- Language: JavaScript
+- Stars: 1
+- Forks: 0
+
+## Notes
+- This project card is synced from GitHub metadata.
+- You can further edit the description and details in the admin panel.`,
+        status: "published",
+        createdAt: 1771901559866,
+        updatedAt: 1771901559866,
+    },
+    {
+        id: "daf256cb-ae81-487a-b3cb-78bdba1db883",
+        title: "Mirror Self Monitor",
+        description: "Mirror: A tool to manage honesty, not just time. 拒绝大脑美化，直面真实产出。",
+        repoUrl: "https://github.com/yishu-ziyu/mirror-self-monitor",
+        techStack: ["HTML", "GitHub"],
+        imageUrl: "https://opengraph.githubassets.com/1/yishu-ziyu/mirror-self-monitor",
+        year: "2026",
+        stars: 0,
+        content: `# yishu-ziyu/mirror-self-monitor
+
+Mirror: A tool to manage honesty, not just time. 拒绝大脑美化，直面真实产出。
+
+## Snapshot
+- Repository: https://github.com/yishu-ziyu/mirror-self-monitor
+- Last Updated (UTC): 2026-01-24
+- Language: HTML
+- Stars: 0
+- Forks: 0
+
+## Notes
+- This project card is synced from GitHub metadata.
+- You can further edit the description and details in the admin panel.`,
+        status: "published",
+        createdAt: 1771901559866,
+        updatedAt: 1771901559866,
+    },
+    {
+        id: "6d10df24-f9fd-4aa5-8a51-6d011fd083f9",
+        title: "YiShu SVG",
+        description: "YiShu SVG - 智能教学动画生成器：用自然语言生成动态 SVG 动画",
+        repoUrl: "https://github.com/yishu-ziyu/yishu-svg",
+        techStack: ["HTML", "GitHub"],
+        imageUrl: "https://opengraph.githubassets.com/1/yishu-ziyu/yishu-svg",
+        year: "2026",
+        stars: 0,
+        content: `# yishu-ziyu/yishu-svg
+
+YiShu SVG - 智能教学动画生成器：用自然语言生成动态 SVG 动画
+
+## Snapshot
+- Repository: https://github.com/yishu-ziyu/yishu-svg
+- Last Updated (UTC): 2026-01-21
+- Language: HTML
+- Stars: 0
+- Forks: 0
+
+## Notes
+- This project card is synced from GitHub metadata.
+- You can further edit the description and details in the admin panel.`,
+        status: "published",
+        createdAt: 1771901559866,
+        updatedAt: 1771901559866,
+    },
+    {
+        id: "a9431e39-dcb9-4802-8267-c0f2c38aed7e",
+        title: "QuestSpace 2.0",
+        description: "AI-powered knowledge graph whiteboard inspired by Heptabase",
+        repoUrl: "https://github.com/yishu-ziyu/questspace-2.0",
+        techStack: ["TypeScript", "GitHub"],
+        imageUrl: "https://opengraph.githubassets.com/1/yishu-ziyu/questspace-2.0",
+        year: "2026",
+        stars: 0,
+        content: `# yishu-ziyu/questspace-2.0
+
+AI-powered knowledge graph whiteboard inspired by Heptabase
+
+## Snapshot
+- Repository: https://github.com/yishu-ziyu/questspace-2.0
+- Last Updated (UTC): 2026-01-20
+- Language: TypeScript
+- Stars: 0
+- Forks: 0
+
+## Notes
+- This project card is synced from GitHub metadata.
+- You can further edit the description and details in the admin panel.`,
+        status: "published",
+        createdAt: 1771901559866,
+        updatedAt: 1771901559866,
+    },
+    {
+        id: "058df9d0-1fa0-496b-bd4b-094e30481881",
+        title: "Learn Your Way",
+        description: "AI-augmented textbook platform with personalized, multi-modal learning experiences",
+        repoUrl: "https://github.com/yishu-ziyu/learn-your-way",
+        techStack: ["TypeScript", "GitHub"],
+        imageUrl: "https://opengraph.githubassets.com/1/yishu-ziyu/learn-your-way",
+        year: "2026",
+        stars: 0,
+        content: `# yishu-ziyu/learn-your-way
+
+AI-augmented textbook platform with personalized, multi-modal learning experiences
+
+## Snapshot
+- Repository: https://github.com/yishu-ziyu/learn-your-way
+- Last Updated (UTC): 2026-01-20
+- Language: TypeScript
+- Stars: 0
+- Forks: 0
+
+## Notes
+- This project card is synced from GitHub metadata.
+- You can further edit the description and details in the admin panel.`,
+        status: "published",
+        createdAt: 1771901559866,
+        updatedAt: 1771901559866,
+    },
+    {
+        id: "e938f1d1-94aa-462b-a6be-da7390017b2e",
+        title: "NewsNow Yi",
+        description: "NewsNow Yi 正在持续开发中，详细进展请查看 GitHub 仓库。",
+        repoUrl: "https://github.com/yishu-ziyu/newsnow-yi",
+        techStack: ["TypeScript", "GitHub"],
+        imageUrl: "https://opengraph.githubassets.com/1/yishu-ziyu/newsnow-yi",
+        year: "2026",
+        stars: 0,
+        content: `# yishu-ziyu/newsnow-yi
+
+NewsNow Yi 正在持续开发中，详细进展请查看 GitHub 仓库。
+
+## Snapshot
+- Repository: https://github.com/yishu-ziyu/newsnow-yi
+- Last Updated (UTC): 2026-01-12
+- Language: TypeScript
+- Stars: 0
+- Forks: 0
+
+## Notes
+- This project card is synced from GitHub metadata.
+- You can further edit the description and details in the admin panel.`,
+        status: "published",
+        createdAt: 1771901559866,
+        updatedAt: 1771901559866,
     }
 ];
 
 export const INITIAL_PAPERS: Paper[] = [
     {
-        id: 'aigc',
-        title: '焦虑的采纳者：AIGC技术接受中自我控制与比较焦虑的竞争性作用',
-        abstract: '研究大学生采纳 AIGC 学习工具时，自我控制、感知有用性与比较焦虑之间的作用机制。',
-        journal: 'Research Report',
-        imageUrl: '/assets/papers/aigc-cover.svg',
-        year: '2025',
-        pdfUrl: '/pdfs/aigc.pdf',
-        category: 'Psychology',
-        status: 'published'
+        id: "0b535036-2e53-44f5-9d47-e95260e4edbc",
+        title: "焦虑的采纳者：AIGC技术接受中自我控制与比较焦虑的竞争性作用",
+        abstract: "研究大学生采纳 AIGC 学习工具时，自我控制、感知有用性与比较焦虑之间的作用机制。",
+        journal: "Research Report",
+        pdfUrl: "/pdfs/aigc.pdf",
+        imageUrl: "/assets/papers/aigc-cover.svg",
+        year: "2025",
+        category: "Psychology",
+        status: "published",
+        createdAt: 1771902044346,
+        updatedAt: 1771902519853,
     },
     {
-        id: 'labor',
-        title: '教育水平对工作时间的影响研究及其性别差异的异质性分析',
-        abstract: '基于 CLDS 数据，分析教育水平与工作时间关系，并揭示显著的性别与行业异质性。',
-        journal: 'Academic Paper',
-        imageUrl: '/assets/papers/labor-cover.svg',
-        year: '2024',
-        pdfUrl: '/pdfs/labor.pdf',
-        category: 'Economics',
-        status: 'published'
+        id: "51031f10-6ba7-4112-91e0-64db547f99db",
+        title: "教育水平对工作时间的影响研究及其性别差异的异质性分析",
+        abstract: "基于 CLDS 数据，分析教育水平与工作时间关系，并揭示显著的性别与行业异质性。",
+        journal: "Academic Paper",
+        pdfUrl: "/pdfs/labor.pdf",
+        imageUrl: "/assets/papers/labor-cover.svg",
+        year: "2024",
+        category: "Economics",
+        status: "published",
+        createdAt: 1771902044346,
+        updatedAt: 1771902519853,
     },
     {
-        id: 'regional',
-        title: '产业集聚、创新活动与区域经济增长：基于中国城市的实证研究',
-        abstract: '基于中国 289 个城市面板数据，检验产业集聚通过创新活动影响区域经济增长的路径。',
-        journal: 'Academic Paper',
-        imageUrl: '/assets/papers/regional-cover.svg',
-        year: '2024',
-        pdfUrl: '/pdfs/regional.pdf',
-        category: 'Economics',
-        status: 'published'
+        id: "e3c2e4f8-275b-47e4-b44a-5685fa786f98",
+        title: "产业集聚、创新活动与区域经济增长：基于中国城市的实证研究",
+        abstract: "基于中国 289 个城市面板数据，检验产业集聚通过创新活动影响区域经济增长的路径。",
+        journal: "Academic Paper",
+        pdfUrl: "/pdfs/regional.pdf",
+        imageUrl: "/assets/papers/regional-cover.svg",
+        year: "2024",
+        category: "Economics",
+        status: "published",
+        createdAt: 1771902044346,
+        updatedAt: 1771902519853,
     }
 ];
