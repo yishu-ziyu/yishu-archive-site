@@ -65,7 +65,17 @@ VITE_SUPABASE_ANON_KEY=你的anon公钥
 
 如果 `.env.local` 里有其它变量（例如旧的 `GEMINI_API_KEY`），可以保留，不冲突。
 
-## 6. 启动网站
+## 6. 配置 Vercel 环境变量（生产必须）
+
+1. 打开 Vercel 项目 -> `Settings` -> `Environment Variables`。
+2. 添加下面两项，环境选 `Production + Preview + Development`：
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+3. 保存后执行 `Redeploy`。
+
+> 现在网站是「前端 -> 同域 API -> Supabase」模式。即使前端不再直连 Supabase，Vercel API 仍需要这两个变量。
+
+## 7. 启动网站
 
 在项目目录运行：
 
@@ -79,7 +89,7 @@ npm run dev
 2. 用你的邮箱密码登录
 3. 登录成功后进入「后台管理」，可新增/编辑/删除文章、项目、研究
 
-## 7. 常见问题
+## 8. 常见问题
 
 ### 1) 提示“该账号不是后台管理员”
 

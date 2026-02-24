@@ -139,6 +139,50 @@
   - Build passed.
   - Cover paths confirmed in constants and generated sync SQL.
 
+### 10) Deployment preparation: GitHub repository created and pushed
+- Scope:
+  - Initialized git repository for the website project.
+  - Created first deploy-ready commit.
+  - Created public GitHub repository and pushed `main`.
+- Main files / infra:
+  - Local git repository in project root
+  - Remote repository: `https://github.com/yishu-ziyu/yishu-archive-site`
+- Verification:
+  - Remote push succeeded.
+  - `main` branch tracks `origin/main`.
+
+### 11) 2026-02-24 15:33 (CST) - Switched to Vercel API proxy architecture
+- Scope:
+  - Migrated from client-direct Supabase calls to same-origin Vercel API proxy (`/api/*`).
+  - Added serverless auth endpoints with HttpOnly cookie session:
+    - `POST /api/auth/login`
+    - `GET /api/auth/session`
+    - `POST /api/auth/logout`
+  - Added serverless content endpoints for articles/projects/papers (GET/POST/PATCH/DELETE).
+  - Rewired frontend `authService` and `contentService` to use API proxy only.
+  - Updated setup docs to reflect production env and redeploy requirements.
+- Files/DB touched:
+  - `api/_utils/supabaseProxy.js`
+  - `api/auth/login.js`
+  - `api/auth/session.js`
+  - `api/auth/logout.js`
+  - `api/content/articles.js`
+  - `api/content/projects.js`
+  - `api/content/papers.js`
+  - `lib/apiClient.ts`
+  - `lib/authService.ts`
+  - `lib/contentService.ts`
+  - `lib/supabase.ts`
+  - `README.md`
+  - `SUPABASE_SETUP.md`
+  - `.env.example`
+- Verification:
+  - `npm run build` passed.
+  - `node --check` passed for all new API route files.
+- Notes:
+  - Frontend now avoids browser-side direct requests to `*.supabase.co`.
+  - Vercel still requires Supabase env vars to execute serverless proxy routes.
+
 ## Next Entry Template
 ```md
 ## YYYY-MM-DD HH:mm (Local) - <Title>

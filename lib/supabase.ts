@@ -1,23 +1,11 @@
-import { createClient } from '@supabase/supabase-js';
-
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
 
-export const supabase = isSupabaseConfigured
-    ? createClient(supabaseUrl, supabaseAnonKey, {
-          auth: {
-              persistSession: true,
-              autoRefreshToken: true,
-              detectSessionInUrl: true,
-          },
-      })
-    : null;
+// 前端不再直接连接 Supabase，统一走同域 /api 代理。
+export const supabase = null;
 
 export function ensureSupabase() {
-    if (!supabase) {
-        throw new Error('Supabase 未配置：请设置 VITE_SUPABASE_URL 和 VITE_SUPABASE_ANON_KEY');
-    }
-    return supabase;
+    throw new Error('前端已切换为 API 代理模式，不再暴露 Supabase 客户端。');
 }

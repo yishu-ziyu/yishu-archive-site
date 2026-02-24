@@ -18,7 +18,12 @@ VITE_SUPABASE_URL=https://YOUR_PROJECT_ID.supabase.co
 VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
 ```
 
-未配置 Supabase 时，网站会以本地静态数据模式运行。
+当前架构为：
+
+- 前端只请求同域 `/api/*`
+- Vercel API 再去访问 Supabase（前端不再直接连 Supabase）
+
+未配置 Supabase 变量时，网站会以本地静态数据模式运行。
 
 ## 单管理员后台（邮箱密码）
 

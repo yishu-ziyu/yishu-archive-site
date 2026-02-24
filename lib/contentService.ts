@@ -1,5 +1,5 @@
 import { Article, Paper, Project } from '../types';
-import { ensureSupabase } from './supabase';
+import { requestJson } from './apiClient';
 
 type ArticleRow = {
     id: string;
@@ -41,6 +41,14 @@ type PaperRow = {
     status: 'draft' | 'published';
     created_at: string;
     updated_at: string | null;
+};
+
+type ListResponse<T> = {
+    data: T[];
+};
+
+type ItemResponse<T> = {
+    data: T;
 };
 
 function toTimestamp(value?: string | null): number | undefined {
@@ -100,223 +108,103 @@ function mapPaperRow(row: PaperRow): Paper {
 }
 
 export async function fetchArticles(includeDrafts: boolean): Promise<Article[]> {
-    const client = ensureSupabase();
-    let query = client.from('articles').select('*').order('created_at', { ascending: false });
-    if (!includeDrafts) {
-        query = query.eq('status', 'published');
-    }
-    const { data, error } = await query;
-    if (error) {
-        throw error;
-    }
-    return (data as ArticleRow[] | null)?.map(mapArticleRow) ?? [];
+    const response = await requestJson<ListResponse<ArticleRow>>(
+        `/api/content/articles?includeDrafts=${includeDrafts ? '1' : '0'}`,
+    );
+    return response.data.map(mapArticleRow);
 }
 
 export async function createArticle(
     payload: Omit<Article, 'id' | 'createdAt' | 'updatedAt'>,
 ): Promise<Article> {
-    const client = ensureSupabase();
-    const { data, error } = await client
-        .from('articles')
-        .insert({
-            title: payload.title,
-            excerpt: payload.excerpt,
-            content: payload.content,
-            pdf_url: payload.pdfUrl ?? null,
-            external_url: payload.externalUrl ?? null,
-            tags: payload.tags,
-            status: payload.status,
-        })
-        .select('*')
-        .single();
-
-    if (error || !data) {
-        throw error || new Error('创建文章失败');
-    }
-    return mapArticleRow(data as ArticleRow);
+    const response = await requestJson<ItemResponse<ArticleRow>>('/api/content/articles', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+    });
+    return mapArticleRow(response.data);
 }
 
 export async function updateArticle(
     id: string,
     payload: Partial<Omit<Article, 'id' | 'createdAt' | 'updatedAt'>>,
 ): Promise<Article> {
-    const client = ensureSupabase();
-    const { data, error } = await client
-        .from('articles')
-        .update({
-            ...(payload.title !== undefined ? { title: payload.title } : {}),
-            ...(payload.excerpt !== undefined ? { excerpt: payload.excerpt } : {}),
-            ...(payload.content !== undefined ? { content: payload.content } : {}),
-            ...(payload.pdfUrl !== undefined ? { pdf_url: payload.pdfUrl || null } : {}),
-            ...(payload.externalUrl !== undefined ? { external_url: payload.externalUrl || null } : {}),
-            ...(payload.tags !== undefined ? { tags: payload.tags } : {}),
-            ...(payload.status !== undefined ? { status: payload.status } : {}),
-            updated_at: new Date().toISOString(),
-        })
-        .eq('id', id)
-        .select('*')
-        .single();
-
-    if (error || !data) {
-        throw error || new Error('更新文章失败');
-    }
-    return mapArticleRow(data as ArticleRow);
+    const response = await requestJson<ItemResponse<ArticleRow>>(`/api/content/articles?id=${encodeURIComponent(id)}`, {
+        method: 'PATCH',
+        body: JSON.stringify(payload),
+    });
+    return mapArticleRow(response.data);
 }
 
 export async function deleteArticle(id: string): Promise<void> {
-    const client = ensureSupabase();
-    const { error } = await client.from('articles').delete().eq('id', id);
-    if (error) {
-        throw error;
-    }
+    await requestJson<{ ok: true }>(`/api/content/articles?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+    });
 }
 
 export async function fetchProjects(includeDrafts: boolean): Promise<Project[]> {
-    const client = ensureSupabase();
-    let query = client.from('projects').select('*').order('created_at', { ascending: false });
-    if (!includeDrafts) {
-        query = query.eq('status', 'published');
-    }
-    const { data, error } = await query;
-    if (error) {
-        throw error;
-    }
-    return (data as ProjectRow[] | null)?.map(mapProjectRow) ?? [];
+    const response = await requestJson<ListResponse<ProjectRow>>(
+        `/api/content/projects?includeDrafts=${includeDrafts ? '1' : '0'}`,
+    );
+    return response.data.map(mapProjectRow);
 }
 
 export async function createProject(
     payload: Omit<Project, 'id' | 'createdAt' | 'updatedAt'>,
 ): Promise<Project> {
-    const client = ensureSupabase();
-    const { data, error } = await client
-        .from('projects')
-        .insert({
-            title: payload.title,
-            description: payload.description,
-            repo_url: payload.repoUrl,
-            tech_stack: payload.techStack,
-            image_url: payload.imageUrl,
-            year: payload.year,
-            stars: payload.stars ?? null,
-            content: payload.content ?? null,
-            status: payload.status,
-        })
-        .select('*')
-        .single();
-
-    if (error || !data) {
-        throw error || new Error('创建项目失败');
-    }
-    return mapProjectRow(data as ProjectRow);
+    const response = await requestJson<ItemResponse<ProjectRow>>('/api/content/projects', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+    });
+    return mapProjectRow(response.data);
 }
 
 export async function updateProject(
     id: string,
     payload: Partial<Omit<Project, 'id' | 'createdAt' | 'updatedAt'>>,
 ): Promise<Project> {
-    const client = ensureSupabase();
-    const { data, error } = await client
-        .from('projects')
-        .update({
-            ...(payload.title !== undefined ? { title: payload.title } : {}),
-            ...(payload.description !== undefined ? { description: payload.description } : {}),
-            ...(payload.repoUrl !== undefined ? { repo_url: payload.repoUrl } : {}),
-            ...(payload.techStack !== undefined ? { tech_stack: payload.techStack } : {}),
-            ...(payload.imageUrl !== undefined ? { image_url: payload.imageUrl } : {}),
-            ...(payload.year !== undefined ? { year: payload.year } : {}),
-            ...(payload.stars !== undefined ? { stars: payload.stars } : {}),
-            ...(payload.content !== undefined ? { content: payload.content || null } : {}),
-            ...(payload.status !== undefined ? { status: payload.status } : {}),
-            updated_at: new Date().toISOString(),
-        })
-        .eq('id', id)
-        .select('*')
-        .single();
-
-    if (error || !data) {
-        throw error || new Error('更新项目失败');
-    }
-    return mapProjectRow(data as ProjectRow);
+    const response = await requestJson<ItemResponse<ProjectRow>>(`/api/content/projects?id=${encodeURIComponent(id)}`, {
+        method: 'PATCH',
+        body: JSON.stringify(payload),
+    });
+    return mapProjectRow(response.data);
 }
 
 export async function deleteProject(id: string): Promise<void> {
-    const client = ensureSupabase();
-    const { error } = await client.from('projects').delete().eq('id', id);
-    if (error) {
-        throw error;
-    }
+    await requestJson<{ ok: true }>(`/api/content/projects?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+    });
 }
 
 export async function fetchPapers(includeDrafts: boolean): Promise<Paper[]> {
-    const client = ensureSupabase();
-    let query = client.from('papers').select('*').order('created_at', { ascending: false });
-    if (!includeDrafts) {
-        query = query.eq('status', 'published');
-    }
-    const { data, error } = await query;
-    if (error) {
-        throw error;
-    }
-    return (data as PaperRow[] | null)?.map(mapPaperRow) ?? [];
+    const response = await requestJson<ListResponse<PaperRow>>(
+        `/api/content/papers?includeDrafts=${includeDrafts ? '1' : '0'}`,
+    );
+    return response.data.map(mapPaperRow);
 }
 
 export async function createPaper(
     payload: Omit<Paper, 'id' | 'createdAt' | 'updatedAt'>,
 ): Promise<Paper> {
-    const client = ensureSupabase();
-    const { data, error } = await client
-        .from('papers')
-        .insert({
-            title: payload.title,
-            abstract: payload.abstract,
-            journal: payload.journal,
-            pdf_url: payload.pdfUrl ?? null,
-            image_url: payload.imageUrl,
-            year: payload.year,
-            category: payload.category,
-            status: payload.status,
-        })
-        .select('*')
-        .single();
-
-    if (error || !data) {
-        throw error || new Error('创建研究失败');
-    }
-    return mapPaperRow(data as PaperRow);
+    const response = await requestJson<ItemResponse<PaperRow>>('/api/content/papers', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+    });
+    return mapPaperRow(response.data);
 }
 
 export async function updatePaper(
     id: string,
     payload: Partial<Omit<Paper, 'id' | 'createdAt' | 'updatedAt'>>,
 ): Promise<Paper> {
-    const client = ensureSupabase();
-    const { data, error } = await client
-        .from('papers')
-        .update({
-            ...(payload.title !== undefined ? { title: payload.title } : {}),
-            ...(payload.abstract !== undefined ? { abstract: payload.abstract } : {}),
-            ...(payload.journal !== undefined ? { journal: payload.journal } : {}),
-            ...(payload.pdfUrl !== undefined ? { pdf_url: payload.pdfUrl || null } : {}),
-            ...(payload.imageUrl !== undefined ? { image_url: payload.imageUrl } : {}),
-            ...(payload.year !== undefined ? { year: payload.year } : {}),
-            ...(payload.category !== undefined ? { category: payload.category } : {}),
-            ...(payload.status !== undefined ? { status: payload.status } : {}),
-            updated_at: new Date().toISOString(),
-        })
-        .eq('id', id)
-        .select('*')
-        .single();
-
-    if (error || !data) {
-        throw error || new Error('更新研究失败');
-    }
-    return mapPaperRow(data as PaperRow);
+    const response = await requestJson<ItemResponse<PaperRow>>(`/api/content/papers?id=${encodeURIComponent(id)}`, {
+        method: 'PATCH',
+        body: JSON.stringify(payload),
+    });
+    return mapPaperRow(response.data);
 }
 
 export async function deletePaper(id: string): Promise<void> {
-    const client = ensureSupabase();
-    const { error } = await client.from('papers').delete().eq('id', id);
-    if (error) {
-        throw error;
-    }
+    await requestJson<{ ok: true }>(`/api/content/papers?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+    });
 }
