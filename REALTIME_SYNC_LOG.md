@@ -184,6 +184,20 @@
   - Vercel still requires Supabase env vars to execute serverless proxy routes.
   - Changes committed and pushed to `main` with commit `7815836`.
 
+### 12) 2026-02-24 16:16 (CST) - Added EdgeOne Node Functions API compatibility
+- Scope:
+  - Added EdgeOne Node Functions catch-all API route so current `/api/*` proxy architecture works on Tencent EdgeOne.
+  - Included auth/session/logout and content CRUD routing in one file: `/api/auth/*`, `/api/content/*`.
+  - Kept single-admin auth rules and HttpOnly cookie session behavior aligned with existing Vercel proxy logic.
+- Files/DB touched:
+  - `node-functions/api/[[default]].js`
+  - `REALTIME_SYNC_LOG.md`
+- Verification:
+  - `node --check node-functions/api/[[default]].js` passed.
+  - `npm run build` passed.
+- Notes:
+  - EdgeOne deployment now needs only a regular redeploy from `main` to activate API routes.
+
 ## Next Entry Template
 ```md
 ## YYYY-MM-DD HH:mm (Local) - <Title>
