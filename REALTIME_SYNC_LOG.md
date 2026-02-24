@@ -1,9 +1,12 @@
-# Real-Time Sync Log
+# Real-Time Sync Log / 实时同步日志
 
-## Log Rule
+## Log Rule / 日志规则
 - Always append new entries; do not overwrite historical records.
+- 始终追加新记录，不覆盖历史记录。
 - One entry per meaningful change set.
+- 每个有意义的变更集记录一条。
 - Record: timestamp, scope, files/DB touched, verification result.
+- 记录要素：时间戳、变更范围、涉及文件/数据库、验证结果。
 
 ## 2026-02-24 09:00-11:10 (Local) - Session Summary
 
@@ -197,6 +200,48 @@
   - `npm run build` passed.
 - Notes:
   - EdgeOne deployment now needs only a regular redeploy from `main` to activate API routes.
+
+### 13) 2026-02-24 17:09 (CST) - Bilingual checkpoint + CloudBase migration preparation
+- Scope:
+  - Added bilingual checkpoint entry to summarize all work completed so far.
+  - Confirmed current status: local codebase remains end-to-end functional; EdgeOne share path has browser safety warning risk for casual sharing.
+  - Prepared a full CloudBase integrated migration blueprint for next session execution.
+- 范围：
+  - 追加中英双语检查点，汇总当前已完成成果。
+  - 确认当前状态：本地代码链路可用；EdgeOne 分享链路对普通用户存在浏览器风险拦截问题。
+  - 为下次会话准备完整 CloudBase 一体化迁移蓝图。
+- Files/DB touched:
+  - `REALTIME_SYNC_LOG.md`
+  - `CLOUDBASE_MIGRATION_PLAN.md`
+- 涉及文件/数据库：
+  - `REALTIME_SYNC_LOG.md`
+  - `CLOUDBASE_MIGRATION_PLAN.md`
+- Verification:
+  - Checkpoint and migration plan documents generated.
+- 验证：
+  - 双语日志与迁移方案文档已生成。
+- Summary (EN):
+  - Frontend redesign completed (dashboard style, responsive).
+  - Supabase auth + CRUD backend connected.
+  - Single-admin policy enforced (`admin_users`, one-owner model).
+  - Publish/draft toggle unified for articles/projects/papers.
+  - GitHub repo sync SQL tooling created for projects.
+  - Recovery SQL prepared for missing articles/papers.
+  - Paper cover assets redesigned and synced.
+  - Deployment pipeline established (GitHub + Vercel).
+  - Architecture upgraded to same-origin API proxy (`/api/*`).
+  - EdgeOne compatibility function added (`node-functions/api/[[default]].js`).
+- 阶段总结（中文）：
+  - 前端改版完成（仪表盘风格 + 响应式）。
+  - Supabase 登录鉴权与内容 CRUD 已接通。
+  - 单管理员模型已落地（`admin_users` 白名单 + 仅 1 位管理员）。
+  - 文章/项目/研究统一支持 `published/draft` 上下架。
+  - 已实现 GitHub 项目同步 SQL 生成工具。
+  - 已准备文章/研究缺失数据恢复 SQL。
+  - 研究封面已完成重设计并可同步到线上。
+  - 已建立 GitHub + Vercel 发布流水线。
+  - 架构已升级为同域 API 代理（`/api/*`）。
+  - 已补齐 EdgeOne Node Functions 兼容入口（`node-functions/api/[[default]].js`）。
 
 ## Next Entry Template
 ```md
