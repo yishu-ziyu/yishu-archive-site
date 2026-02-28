@@ -243,6 +243,28 @@
   - 架构已升级为同域 API 代理（`/api/*`）。
   - 已补齐 EdgeOne Node Functions 兼容入口（`node-functions/api/[[default]].js`）。
 
+### 14) 2026-02-28 20:45 (CST) - Added GitHub Pages simple static deployment
+- Scope:
+  - Added a minimal GitHub Actions workflow to auto-deploy static build output (`dist`) to GitHub Pages on every push to `main`.
+  - This supports a low-friction showcase path for friends (read-only static mode).
+- 范围：
+  - 新增最简 GitHub Actions 工作流：每次 `main` 分支推送后，自动将 `dist` 发布到 GitHub Pages。
+  - 用于低门槛“展示版”分享（只读静态模式）。
+- Files/DB touched:
+  - `.github/workflows/pages.yml`
+  - `REALTIME_SYNC_LOG.md`
+- 涉及文件/数据库：
+  - `.github/workflows/pages.yml`
+  - `REALTIME_SYNC_LOG.md`
+- Verification:
+  - Workflow file created with official `configure-pages/upload-pages-artifact/deploy-pages` chain.
+- 验证：
+  - 工作流已创建，采用 GitHub 官方 Pages 发布链路（`configure-pages/upload-pages-artifact/deploy-pages`）。
+- Notes:
+  - Static mode does not include server-side `/api` execution. It is suitable for demo/showcase only.
+- 备注：
+  - 静态模式不包含服务端 `/api` 执行，仅适合演示/展示。
+
 ## Next Entry Template
 ```md
 ## YYYY-MM-DD HH:mm (Local) - <Title>
